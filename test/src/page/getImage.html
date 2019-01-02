@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <img src="/images/loading.gif" alt="" lazy-img="https://f11.baidu.com/it/u=2338602927,983853986&fm=72">
+        </li>
+        <li>
+            <img src="/images/loading.gif" alt="" lazy-img="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1028725406,3973401160&fm=26&gp=0.jpg">
+        </li>
+        <li>
+            <img src="/images/loading.gif" alt="" lazy-img="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3685860884,803005995&fm=26&gp=0.jpg">
+        </li>
+        <li>
+            <img src="/images/loading.gif" alt="" lazy-img="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2809204272,808734553&fm=26&gp=0.jpg 
+            ">
+        </li>
+    </ul>
+    <script src="/js/heigo.js"></script>
+    <script>
+        let promiseArr = []
+        $("img").each((i) => {
+
+            function load() {
+                return new Promise((resolve, reject) => {
+                    let $img = new Image()
+                    $img.src = i.getAttribute("lazy-img")
+                    $img.onload = function() {
+                        i.src = $img.src
+                        resolve()
+                    }
+                })
+            }
+            promiseArr.push(load)
+        })
+
+        //集中所有网络加载一张图片
+        // async function all() {
+        //     for (let i = 0; i < promiseArr.length; i++) {
+        //         await promiseArr[i]()
+        //     }
+        // }
+        // all()
+
+        //同时加载图片
+
+        Promise.all(promiseArr.map(i => i())).then(() => {
+
+        })
+    </script>
+</body>
+
+</html>

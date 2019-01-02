@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #content li{
+            display: none;
+        }
+        #content li:nth-child(1){
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <ul id="tab">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <ul id="content">
+        <li>内容1</li>
+        <li>内容2</li>
+        <li>内容3</li>
+    </ul>
+    <!-- <script src="./tool.js"></script> -->
+    <script>
+
+        class Tab{
+            constructor(option){
+                let {tabEl,contentEl,cb}=option
+                this.tabEl=tabEl
+                this.contentEl=contentEl
+                this.cb=cb
+                this.init()
+            }
+            init(){
+                let contentArr=Array.from(this.contentEl)
+                Array.from(this.tabEl).forEach((i,index)=>{
+                    i.onclick=()=>{
+                        contentArr.forEach((j)=>{
+                            j.style.display="none"
+                        })
+                        this.contentEl[index].style.display="block"
+                        this.cb(this.contentEl[index],index)
+                    }
+                    
+                })
+            }
+        }
+
+         new Tab({
+             tabEl:document.getElementById("tab").getElementsByTagName("li"),
+             contentEl:document.getElementById("content").getElementsByTagName("li"),
+             cb(i,index){
+                 console.log(i,index)
+             }
+         })
+    </script>
+</body>
+</html>
