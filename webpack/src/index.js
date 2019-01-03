@@ -1,9 +1,10 @@
 // var name=require("./tool.js")
 // console.log(name)
 
-import name from "./tool"
-import Tab from "./components/tab"
+// import name from "./tool"
 
-document.getElementById("app").innerHTML=Tab()
-document.getElementById("app1").innerHTML=Tab()
-// console.log(name)
+import Tab from "./components/tab"
+console.log(1234)
+Tab("app")
+Tab("app1")
+

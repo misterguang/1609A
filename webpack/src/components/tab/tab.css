@@ -1,0 +1,13 @@
+.nav{
+    display: flex;
+    width: 600px;
+    justify-content: space-around;
+    align-items: center
+}
+.content section{
+    display: none;
+}
+
+.content section:nth-child(1){
+    display: block;
+}
